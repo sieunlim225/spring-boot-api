@@ -65,3 +65,17 @@ create table if not exists ClientDetails (
   additionalInformation VARCHAR(4096),
   autoApproveScopes VARCHAR(256)
 );
+
+-- customized oauth_client_details table
+create table if not exists POST (
+   POST_ID INT AUTO_INCREMENT PRIMARY KEY,
+   SUBJECT VARCHAR(255),
+   CONTENT VARCHAR(255)
+);
+
+-- customized oauth_client_details table
+create table if not exists MEMBER (
+   MEMBER_INDEX INT AUTO_INCREMENT PRIMARY KEY,
+   MEMBER_ID VARCHAR(255),
+   MEMBER_NAME VARCHAR(255)
+);
