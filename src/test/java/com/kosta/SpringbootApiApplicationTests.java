@@ -1,34 +1,59 @@
 package com.kosta;
 
-import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.kosta.posts.api.PostApiController;
+import com.kosta.posts.dao.PostDao;
+import com.kosta.posts.service.PostService;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@WebAppConfiguration
+@WebMvcTest(PostApiController.class)
 public class SpringbootApiApplicationTests {
+
+	@Autowired
+	private MockMvc mockMvc;
 	
+	@MockBean
+    private PostService service;
+
+/*	@Autowired
+	private TestRestTemplate testRestTemplate;*/
 	@Value("http://localhost:8080")
 	String baseUrl;
 	
+	@Before
+	 public void setUp() {
+		
+	}
 	@Test
-	public void contextLoads() {
-		// RestTemplate 객체를 얻는다.
+	public void contextLoads() throws Exception{
+		
+
+			this.mockMvc.perform(get("/posts")).andDo(print());
+		
+		
+		//assertThat(controller).isNotNull();
+		
+		//assertThat(this.testRestTemplate.getForObject(baseUrl+"/posts", String.class));
+		/*// RestTemplate 객체를 얻는다.
 		RestTemplate restTemplate = new RestTemplate();
 
 		//지정 URL을 GET 타입으로 호출한다.
 		ResponseEntity<String> response = restTemplate.getForEntity(baseUrl+"/posts", String.class);
 		
 		// 정상적으로 처리가 되었는지 확인한다.
-		assertTrue(response.getStatusCode().is2xxSuccessful());
+		assertTrue(response.getStatusCode().is2xxSuccessful());*/
 		
 		/*// 응답의 본문(body)를 얻으려면 getBody() 메소드를 호출한다.
 				String html = response.getBody();

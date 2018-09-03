@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kosta.posts.model.Post;
@@ -23,6 +24,7 @@ public class PostApiController {
 	private PostService postService;
 	
 	@PostMapping("/posts")
+	@ResponseBody
 	public ApiResponse regist(@RequestBody Post post) {
 		/*System.out.println(post.getSubject());
 		System.out.println(post.getContent());*/

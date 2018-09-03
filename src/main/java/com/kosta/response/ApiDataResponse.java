@@ -5,7 +5,7 @@ public class ApiDataResponse<E> extends ApiResponse {
 	private E data;
 	
 	public ApiDataResponse(E e) {
-		super("");
+		super();
 		this.data = e;
 	}
 
